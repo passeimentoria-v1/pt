@@ -92,14 +92,14 @@ export default function DashboardAluno() {
 
   return (
     <div className="min-h-screen bg-gray-50">
-      {/* Header */}
-      <div className="bg-gradient-to-r from-primary-600 to-primary-700 text-white dark:from-gray-800 dark:to-gray-900">
+      {/* Header - Identidade EstudeAntes (Preto e Amarelo) */}
+      <div className="bg-gradient-to-r from-gray-900 via-black to-gray-900 text-white dark:from-black dark:to-gray-900 border-b-4 border-yellow-400">
         <div className="max-w-7xl mx-auto px-4 py-6">
           <div className="flex items-center justify-between">
             <div className="flex items-center space-x-4">
               <button
                 onClick={() => setShowAvatarSelector(true)}
-                className="w-16 h-16 bg-white rounded-full flex items-center justify-center text-4xl hover:ring-4 hover:ring-white/30 transition cursor-pointer"
+                className="w-16 h-16 bg-white rounded-full flex items-center justify-center text-4xl hover:ring-4 hover:ring-yellow-400 transition cursor-pointer border-2 border-yellow-400"
               >
                 {currentAvatar}
               </button>
@@ -113,10 +113,11 @@ export default function DashboardAluno() {
                     <span className="text-sm bg-red-500 px-2 py-1 rounded">⚔️ O Guerreiro</span>
                   )}
                   {userData?.purchasedItems?.includes('titulo_mestre') && (
-                    <span className="text-sm bg-yellow-500 px-2 py-1 rounded">👑 Mestre do Português</span>
+                    <span className="text-sm bg-yellow-500 text-black px-2 py-1 rounded font-bold">👑 Mestre do Português</span>
                   )}
                 </div>
-                <p className="text-primary-100 dark:text-gray-400">Nível {userData?.level || 1}</p>
+                {/* Texto secundário em Amarelo para destaque no fundo preto */}
+                <p className="text-yellow-400 font-medium">Nível {userData?.level || 1}</p>
               </div>
             </div>
             <div className="flex items-center space-x-2">
@@ -128,7 +129,7 @@ export default function DashboardAluno() {
               </button>
               <button
                 onClick={handleLogout}
-                className="flex items-center space-x-2 bg-white/10 hover:bg-white/20 px-4 py-2 rounded-lg transition"
+                className="flex items-center space-x-2 bg-white/10 hover:bg-red-500/20 px-4 py-2 rounded-lg transition hover:text-red-300"
               >
                 <LogOut className="w-4 h-4" />
                 <span>Sair</span>
@@ -139,12 +140,12 @@ export default function DashboardAluno() {
           {/* Barra de Progresso */}
           <div className="mt-6">
             <div className="flex items-center justify-between text-sm mb-2">
-              <span>{userData?.xp || 0} XP</span>
-              <span>Próximo nível: {(userData?.level || 1) + 1}</span>
+              <span className="font-bold text-yellow-100">{userData?.xp || 0} XP</span>
+              <span className="text-gray-400">Próximo nível: {(userData?.level || 1) + 1}</span>
             </div>
-            <div className="w-full bg-white/20 rounded-full h-3">
+            <div className="w-full bg-gray-700 rounded-full h-3 border border-gray-600">
               <div
-                className="bg-yellow-300 h-3 rounded-full transition-all duration-300"
+                className="bg-yellow-400 h-3 rounded-full transition-all duration-300 shadow-[0_0_10px_rgba(250,204,21,0.5)]"
                 style={{ width: `${progressToNextLevel}%` }}
               />
             </div>
@@ -188,13 +189,13 @@ export default function DashboardAluno() {
                 </div>
               </div>
 
-              <div className="bg-white rounded-xl shadow-sm p-6 border-l-4 border-blue-500">
+              <div className="bg-white rounded-xl shadow-sm p-6 border-l-4 border-black">
                 <div className="flex items-center justify-between">
                   <div>
                     <p className="text-gray-600 text-sm">Posição no Ranking</p>
                     <p className="text-3xl font-bold text-gray-900">#{currentPosition || '-'}</p>
                   </div>
-                  <Trophy className="w-8 h-8 text-blue-500" />
+                  <Trophy className="w-8 h-8 text-black" />
                 </div>
               </div>
             </div>
@@ -202,20 +203,20 @@ export default function DashboardAluno() {
             {/* Desafio Diário Banner */}
             <button
               onClick={() => navigate('/desafio-diario')}
-              className="w-full bg-gradient-to-r from-yellow-400 via-orange-400 to-red-400 text-white rounded-xl shadow-lg p-6 hover:shadow-xl transition text-left relative overflow-hidden"
+              className="w-full bg-gradient-to-r from-gray-900 via-gray-800 to-black text-white rounded-xl shadow-lg p-6 hover:shadow-xl transition text-left relative overflow-hidden border border-yellow-500/30"
             >
               <div className="relative z-10">
                 <div className="flex items-center justify-between mb-2">
                   <div className="flex items-center space-x-2">
-                    <Calendar className="w-6 h-6" />
-                    <h3 className="text-xl font-bold">Desafio Diário</h3>
+                    <Calendar className="w-6 h-6 text-yellow-400" />
+                    <h3 className="text-xl font-bold text-yellow-400">Desafio Diário</h3>
                   </div>
-                  <div className="bg-white/20 backdrop-blur-sm rounded-lg px-3 py-1">
-                    <span className="text-sm font-bold">XP em DOBRO!</span>
+                  <div className="bg-yellow-400/20 backdrop-blur-sm rounded-lg px-3 py-1 border border-yellow-400/50">
+                    <span className="text-sm font-bold text-yellow-300">XP em DOBRO!</span>
                   </div>
                 </div>
-                <p className="text-white/90 mb-3">Complete 1 questão especial e ganhe recompensa em dobro</p>
-                <div className="inline-flex items-center space-x-2 bg-white/20 backdrop-blur-sm rounded-lg px-4 py-2">
+                <p className="text-gray-300 mb-3">Complete 1 questão especial e ganhe recompensa em dobro</p>
+                <div className="inline-flex items-center space-x-2 bg-yellow-400 text-black rounded-lg px-4 py-2 hover:bg-yellow-300 transition">
                   <Zap className="w-5 h-5" />
                   <span className="font-bold">Fazer Desafio →</span>
                 </div>
@@ -223,22 +224,22 @@ export default function DashboardAluno() {
               <div className="absolute top-0 right-0 text-9xl opacity-10">🏆</div>
             </button>
 
-            {/* Ações Rápidas */}
+            {/* Ações Rápidas - Cores mais sóbrias ou alinhadas com amarelo/preto onde possível, mas mantendo a distinção */}
             <div className="grid grid-cols-2 lg:grid-cols-3 gap-4">
               <button
                 onClick={() => navigate('/modo-batalha')}
-                className="bg-gradient-to-br from-red-500 to-orange-500 text-white rounded-xl shadow-lg p-6 hover:shadow-xl transition text-left"
+                className="bg-gradient-to-br from-red-500 to-red-600 text-white rounded-xl shadow-lg p-6 hover:shadow-xl transition text-left"
               >
                 <Swords className="w-8 h-8 mb-3" />
                 <h3 className="font-bold text-lg mb-1">Modo Batalha</h3>
-                <p className="text-sm text-white/80">Desafie outros alunos 1v1</p>
+                <p className="text-sm text-white/80">Desafie 1v1</p>
               </button>
 
               <button
                 onClick={() => navigate('/missoes')}
-                className="bg-gradient-to-br from-purple-500 to-purple-600 text-white rounded-xl shadow-lg p-6 hover:shadow-xl transition text-left"
+                className="bg-gradient-to-br from-gray-800 to-gray-900 text-white rounded-xl shadow-lg p-6 hover:shadow-xl transition text-left border-b-4 border-yellow-400"
               >
-                <Target className="w-8 h-8 mb-3" />
+                <Target className="w-8 h-8 mb-3 text-yellow-400" />
                 <h3 className="font-bold text-lg mb-1">Missões</h3>
                 <p className="text-sm text-white/80">Recompensas semanais</p>
               </button>
@@ -249,7 +250,7 @@ export default function DashboardAluno() {
               >
                 <Brain className="w-8 h-8 mb-3" />
                 <h3 className="font-bold text-lg mb-1">Revisão</h3>
-                <p className="text-sm text-white/80">Pratique seus erros</p>
+                <p className="text-sm text-white/80">Pratique erros</p>
               </button>
 
               <button
@@ -258,25 +259,25 @@ export default function DashboardAluno() {
               >
                 <TrendingUp className="w-8 h-8 mb-3" />
                 <h3 className="font-bold text-lg mb-1">Estatísticas</h3>
-                <p className="text-sm text-white/80">Acompanhe evolução</p>
+                <p className="text-sm text-white/80">Sua evolução</p>
               </button>
 
               <button
                 onClick={() => navigate('/conquistas')}
-                className="bg-gradient-to-br from-purple-500 to-pink-600 text-white rounded-xl shadow-lg p-6 hover:shadow-xl transition text-left"
+                className="bg-gradient-to-br from-purple-500 to-purple-600 text-white rounded-xl shadow-lg p-6 hover:shadow-xl transition text-left"
               >
                 <Award className="w-8 h-8 mb-3" />
                 <h3 className="font-bold text-lg mb-1">Conquistas</h3>
-                <p className="text-sm text-white/80">Badges e recompensas</p>
+                <p className="text-sm text-white/80">Seus Badges</p>
               </button>
 
               <button
                 onClick={() => navigate('/loja')}
-                className="bg-gradient-to-br from-yellow-500 to-orange-600 text-white rounded-xl shadow-lg p-6 hover:shadow-xl transition text-left"
+                className="bg-gradient-to-br from-yellow-400 to-yellow-500 text-black rounded-xl shadow-lg p-6 hover:shadow-xl transition text-left"
               >
-                <ShoppingBag className="w-8 h-8 mb-3" />
+                <ShoppingBag className="w-8 h-8 mb-3 text-black" />
                 <h3 className="font-bold text-lg mb-1">Loja</h3>
-                <p className="text-sm text-white/80">Troque XP por itens</p>
+                <p className="text-sm text-black/70">Troque XP por itens</p>
               </button>
             </div>
 
@@ -284,12 +285,12 @@ export default function DashboardAluno() {
             <div className="bg-white rounded-xl shadow-sm p-6">
               <div className="flex items-center justify-between mb-4">
                 <div className="flex items-center space-x-2">
-                  <Users className="w-5 h-5 text-purple-600" />
+                  <Users className="w-5 h-5 text-gray-900" />
                   <h3 className="text-lg font-bold text-gray-900">Minhas Turmas</h3>
                 </div>
                 <button
                   onClick={() => setShowEntrarTurma(true)}
-                  className="text-purple-600 hover:text-purple-700 font-medium text-sm"
+                  className="text-yellow-600 hover:text-yellow-700 font-medium text-sm"
                 >
                   + Entrar em Turma
                 </button>
@@ -301,16 +302,16 @@ export default function DashboardAluno() {
                   <p className="text-gray-600 text-sm mb-3">Você ainda não está em nenhuma turma</p>
                   <button
                     onClick={() => setShowEntrarTurma(true)}
-                    className="inline-flex items-center space-x-2 bg-purple-600 text-white px-4 py-2 rounded-lg hover:bg-purple-700 transition text-sm"
+                    className="inline-flex items-center space-x-2 bg-gray-900 text-white px-4 py-2 rounded-lg hover:bg-black transition text-sm border-b-2 border-yellow-400"
                   >
-                    <Users className="w-4 h-4" />
+                    <Users className="w-4 h-4 text-yellow-400" />
                     <span>Entrar em uma Turma</span>
                   </button>
                 </div>
               ) : (
                 <div className="space-y-2">
                   {userTurmas.map((turma) => (
-                    <div key={turma.id} className="flex items-center justify-between p-3 bg-purple-50 rounded-lg">
+                    <div key={turma.id} className="flex items-center justify-between p-3 bg-yellow-50 rounded-lg border border-yellow-100">
                       <div className="flex items-center space-x-3">
                         <span className="text-2xl">{turma.emoji || '📚'}</span>
                         <div>
@@ -336,7 +337,7 @@ export default function DashboardAluno() {
                 <div
                   key={user.id}
                   className={`flex items-center space-x-3 p-3 rounded-lg ${
-                    user.id === currentUser?.uid ? 'bg-primary-50 border border-primary-200' : 'bg-gray-50'
+                    user.id === currentUser?.uid ? 'bg-yellow-50 border border-yellow-300 shadow-sm' : 'bg-gray-50'
                   }`}
                 >
                   <span className={`font-bold text-lg ${
@@ -347,10 +348,14 @@ export default function DashboardAluno() {
                     #{index + 1}
                   </span>
                   <div className="flex-1">
-                    <p className="font-medium text-sm">{user.name}</p>
+                    <p className={`font-medium text-sm ${user.id === currentUser?.uid ? 'text-black font-bold' : ''}`}>
+                      {user.name}
+                    </p>
                     <p className="text-xs text-gray-500">Nível {user.level}</p>
                   </div>
-                  <span className="font-bold text-primary-600">{user.xp} XP</span>
+                  <span className={`font-bold ${user.id === currentUser?.uid ? 'text-black' : 'text-gray-600'}`}>
+                    {user.xp} XP
+                  </span>
                 </div>
               ))}
             </div>
@@ -361,12 +366,12 @@ export default function DashboardAluno() {
         <div className="mt-8">
           <div className="flex items-center justify-between mb-6">
             <div>
-              <h2 className="text-3xl font-bold text-gray-900 dark:text-white">🗺️ Sua Jornada de Aprendizado</h2>
-              <p className="text-gray-600 dark:text-gray-400 mt-1">Complete os desafios e conquiste novas regiões!</p>
+              <h2 className="text-3xl font-bold text-gray-900 dark:text-white">🗺️ Sua Jornada</h2>
+              <p className="text-gray-600 dark:text-gray-400 mt-1">Avance no mapa e domine o conteúdo!</p>
             </div>
           </div>
 
-          <div className="bg-gradient-to-b from-sky-100 via-green-50 to-yellow-50 dark:from-gray-800 dark:via-gray-800 dark:to-gray-900 rounded-3xl shadow-2xl p-8 lg:p-12 overflow-hidden relative">
+          <div className="bg-gradient-to-b from-sky-100 via-white to-yellow-50 dark:from-gray-800 dark:via-gray-800 dark:to-gray-900 rounded-3xl shadow-2xl p-8 lg:p-12 overflow-hidden relative border-t-4 border-black">
             {/* Elementos decorativos de fundo */}
             <div className="absolute top-10 right-10 text-8xl opacity-10 animate-bounce">☁️</div>
             <div className="absolute bottom-10 left-10 text-6xl opacity-10">🌳</div>
@@ -735,7 +740,7 @@ export default function DashboardAluno() {
 
             {/* Dica Lúdica no rodapé */}
             <div className="mt-16 relative">
-              <div className="bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 rounded-2xl shadow-xl p-1">
+              <div className="bg-gradient-to-r from-gray-900 via-black to-gray-900 rounded-2xl shadow-xl p-1 border border-yellow-500">
                 <div className="bg-white dark:bg-gray-800 rounded-xl p-6 text-center">
                   <div className="flex items-center justify-center space-x-3 mb-2">
                     <span className="text-3xl animate-bounce">🎮</span>
@@ -743,7 +748,7 @@ export default function DashboardAluno() {
                     <span className="text-3xl animate-bounce delay-100">🗺️</span>
                   </div>
                   <p className="text-gray-700 dark:text-gray-300 font-medium">
-                    Complete os níveis em ordem! Cada região desbloqueada te deixa mais próximo de se tornar um <span className="text-yellow-600 font-black">MESTRE</span>!
+                    Complete os níveis em ordem! Cada região desbloqueada te deixa mais próximo de se tornar um <span className="text-yellow-500 font-black">MESTRE</span>!
                   </p>
                 </div>
               </div>
