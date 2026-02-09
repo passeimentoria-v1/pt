@@ -15,7 +15,6 @@ export default function Login() {
   const { signIn, signUp, currentUser, userData } = useAuth();
   const navigate = useNavigate();
 
-  // Redireciona automaticamente se já estiver logado
   useEffect(() => {
     if (currentUser && userData) {
       navigate(userData.role === 'teacher' ? '/professor' : '/aluno');
@@ -30,53 +29,51 @@ export default function Login() {
     try {
       if (isLogin) {
         await signIn(email, password);
-        // O useEffect vai redirecionar automaticamente quando userData carregar
       } else {
         await signUp(email, password, name, role);
-        // O useEffect vai redirecionar automaticamente quando userData carregar
       }
     } catch (err) {
       setError('Erro: ' + (err.message || 'Verifique suas credenciais e tente novamente'));
       setLoading(false);
     }
-    // Não seta loading=false aqui para manter o botão desabilitado até redirecionar
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-primary-500 to-primary-700 flex items-center justify-center p-4">
+    <div className="min-h-screen bg-gradient-to-br from-black to-gray-900 flex items-center justify-center p-4">
       <div className="max-w-md w-full">
+
         {/* Logo e Título */}
         <div className="text-center mb-8">
-          <div className="inline-flex items-center justify-center w-16 h-16 bg-white rounded-full mb-4">
-            <BookOpen className="w-8 h-8 text-primary-600" />
+          <div className="inline-flex items-center justify-center w-16 h-16 bg-yellow-400 rounded-full mb-4">
+            <BookOpen className="w-8 h-8 text-black" />
           </div>
-          <h1 className="text-4xl font-bold text-white mb-2">Português Game</h1>
-          <p className="text-primary-100">Aprenda português de forma divertida e gamificada!</p>
+          <h1 className="text-4xl font-bold text-yellow-400 mb-2">Português Game</h1>
+          <p className="text-gray-200">Aprenda português de forma divertida e gamificada!</p>
         </div>
 
         {/* Features */}
         <div className="grid grid-cols-3 gap-4 mb-8">
           <div className="bg-white/10 backdrop-blur-sm rounded-lg p-4 text-center">
-            <Trophy className="w-6 h-6 text-yellow-300 mx-auto mb-2" />
+            <Trophy className="w-6 h-6 text-yellow-400 mx-auto mb-2" />
             <p className="text-white text-sm font-medium">Conquistas</p>
           </div>
           <div className="bg-white/10 backdrop-blur-sm rounded-lg p-4 text-center">
-            <Zap className="w-6 h-6 text-yellow-300 mx-auto mb-2" />
+            <Zap className="w-6 h-6 text-yellow-400 mx-auto mb-2" />
             <p className="text-white text-sm font-medium">XP e Níveis</p>
           </div>
           <div className="bg-white/10 backdrop-blur-sm rounded-lg p-4 text-center">
-            <BookOpen className="w-6 h-6 text-yellow-300 mx-auto mb-2" />
+            <BookOpen className="w-6 h-6 text-yellow-400 mx-auto mb-2" />
             <p className="text-white text-sm font-medium">Trilhas</p>
           </div>
         </div>
 
         {/* Card de Login */}
         <div className="bg-white rounded-2xl shadow-2xl p-8">
-          <div className="flex mb-6 bg-gray-100 rounded-lg p-1">
+          <div className="flex mb-6 bg-gray-200 rounded-lg p-1">
             <button
               onClick={() => setIsLogin(true)}
               className={`flex-1 py-2 rounded-md font-medium transition ${
-                isLogin ? 'bg-white shadow text-primary-600' : 'text-gray-600'
+                isLogin ? 'bg-black text-yellow-400 shadow' : 'text-gray-600'
               }`}
             >
               Entrar
@@ -84,7 +81,7 @@ export default function Login() {
             <button
               onClick={() => setIsLogin(false)}
               className={`flex-1 py-2 rounded-md font-medium transition ${
-                !isLogin ? 'bg-white shadow text-primary-600' : 'text-gray-600'
+                !isLogin ? 'bg-black text-yellow-400 shadow' : 'text-gray-600'
               }`}
             >
               Registrar
@@ -108,7 +105,7 @@ export default function Login() {
                     type="text"
                     value={name}
                     onChange={(e) => setName(e.target.value)}
-                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"
+                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-400 focus:border-transparent"
                     required
                   />
                 </div>
@@ -120,7 +117,7 @@ export default function Login() {
                   <select
                     value={role}
                     onChange={(e) => setRole(e.target.value)}
-                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"
+                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-400 focus:border-transparent"
                   >
                     <option value="student">Aluno</option>
                     <option value="teacher">Professor</option>
@@ -137,7 +134,7 @@ export default function Login() {
                 type="email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"
+                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-400 focus:border-transparent"
                 required
               />
             </div>
@@ -150,7 +147,7 @@ export default function Login() {
                 type="password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"
+                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-400 focus:border-transparent"
                 required
               />
             </div>
@@ -158,14 +155,14 @@ export default function Login() {
             <button
               type="submit"
               disabled={loading}
-              className="w-full bg-primary-600 text-white py-3 rounded-lg font-medium hover:bg-primary-700 transition disabled:opacity-50 disabled:cursor-not-allowed"
+              className="w-full bg-black text-yellow-400 py-3 rounded-lg font-medium hover:bg-gray-900 transition disabled:opacity-50 disabled:cursor-not-allowed"
             >
               {loading ? 'Carregando...' : isLogin ? 'Entrar' : 'Criar Conta'}
             </button>
           </form>
         </div>
 
-        <p className="text-center text-white mt-6 text-sm">
+        <p className="text-center text-gray-200 mt-6 text-sm">
           Desenvolvido para transformar o ensino de português 🚀
         </p>
       </div>
