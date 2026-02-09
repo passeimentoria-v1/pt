@@ -47,7 +47,7 @@ export default function Login() {
           <div className="inline-flex items-center justify-center w-16 h-16 bg-yellow-400 rounded-full mb-4">
             <BookOpen className="w-8 h-8 text-black" />
           </div>
-          <h1 className="text-4xl font-bold text-yellow-400 mb-2">Estudeantes</h1>
+          <h1 className="text-4xl font-bold text-yellow-400 mb-2">EstudeAntes</h1>
           <p className="text-gray-200">Aprenda português de forma divertida e gamificada!</p>
         </div>
 
